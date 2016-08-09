@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bindService;
     private Button unbindServise;
     private DownloadBinder downloadBinder;
+    private Button intentService;
 
 
 
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stop = (Button) findViewById(R.id.stop_service);
         bindService = (Button) findViewById(R.id.bind_service);
         unbindServise = (Button) findViewById(R.id.unbind_service);
+        intentService = (Button) findViewById(R.id.intent_service);
+        intentService.setOnClickListener(this);
         bindService.setOnClickListener(this);
         unbindServise.setOnClickListener(this);
         start.setOnClickListener(this);
@@ -63,10 +67,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bind_service:
                 Intent intent2 = new Intent(this,MyService.class);
-                bindService(intent2,serviceConnection,BIND_AUTO_CREATE);   //BIND_AUTO_CREATE : 标志位，表示服务和活动进行绑定后自动创建服务
+                /**
+                 *BIND_AUTO_CREATE : 标志位，表示服务和活动进行绑定后自动创建服务
+                 *bindService方法用来获取一个永久链接，回调服务中的onBind（）方法
+                 */
+                bindService(intent2,serviceConnection,BIND_AUTO_CREATE);
                 break;
             case R.id.unbind_service:
                 unbindService(serviceConnection);
+                break;
+            case R.id.intent_service:
+                /*打印主线程ID*/
+                Log.i("info","Main Thread ID is : "+ Thread.currentThread().getId());
+                Intent intent3 = new Intent(this,MyIntentService.class);
+                startService(intent3);
                 break;
             default:
                 break;
