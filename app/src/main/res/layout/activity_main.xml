@@ -37,5 +37,10 @@
         android:text="Intent_Service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/start_alarm_service"
+        android:text="AlarmReceiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

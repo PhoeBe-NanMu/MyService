@@ -10,6 +10,8 @@
         android:theme="@style/AppTheme">
         <service android:name=".MyService" />
         <service android:name=".MyIntentService" />
+        <service android:name=".LongRunningService" />
+        <receiver android:name=".AlarmReceiver" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

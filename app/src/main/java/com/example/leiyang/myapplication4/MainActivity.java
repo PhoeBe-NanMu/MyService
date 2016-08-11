@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button stop;
     private Button bindService;
     private Button unbindServise;
+    private Button alarmService;
     private DownloadBinder downloadBinder;
     private Button intentService;
 
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bindService = (Button) findViewById(R.id.bind_service);
         unbindServise = (Button) findViewById(R.id.unbind_service);
         intentService = (Button) findViewById(R.id.intent_service);
+        alarmService = (Button) findViewById(R.id.start_alarm_service);
+        alarmService.setOnClickListener(this);
         intentService.setOnClickListener(this);
         bindService.setOnClickListener(this);
         unbindServise.setOnClickListener(this);
@@ -81,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i("info","Main Thread ID is : "+ Thread.currentThread().getId());
                 Intent intent3 = new Intent(this,MyIntentService.class);
                 startService(intent3);
+                break;
+            case R.id.start_alarm_service:
+                Log.i("info","test");
+                Intent intent4 = new Intent(this,LongRunningService.class);
+                startService(intent4);
                 break;
             default:
                 break;
